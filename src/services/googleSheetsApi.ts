@@ -1,4 +1,4 @@
-const SHEET_URL ="https://script.google.com/macros/s/AKfycbyQvMFxaCJneAxxxDoW9oOAfzCwUspF5D2r79g9O1HuW1URlmheryLJfgD0MHSbLvA7YQ/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycby5TXnT_VBX4w7qrlaiJmBkhl8eopuI19xIfSZY1P_czg5Vtm1lISmCtgW8FTDz4OsETg/exec";
 
 export async function fullSync(data: { customers: any[]; loans: any[]; repayments: any[]; }) {
   try {
@@ -8,11 +8,11 @@ export async function fullSync(data: { customers: any[]; loans: any[]; repayment
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: "fullSync", payload: data }),
     });
-    console.log("[GoogleSheetsApi] Push request sent (no-cors mode)");
+    console.log("[GoogleSheetsApi] Push request sent");
     return { success: true };
   } catch (err) {
     console.error("[GoogleSheetsApi] Request failed:", err);
-    throw new Error("Unable to reach Google Apps Script. Check deployment.");
+    throw new Error("Unable to reach Google Apps Script.");
   }
 }
 

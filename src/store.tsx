@@ -41,7 +41,7 @@ const saveLocal = (d: DB) => {
     /* ignore quota errors */
   }
 };
-<<<<<<< HEAD
+
 const loadLocal = (): DB => {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -63,9 +63,7 @@ const loadLocal = (): DB => {
     };
   }
 };
-=======
 
->>>>>>> c01435d352782d6d8c088dd7818717d5a49b1eeb
 const calcInterestDue = (
   principal: number,
   rate: number,
@@ -177,18 +175,11 @@ const Ctx = createContext<LedgerCtx | null>(null);
 // -------------------------------------------------------------------
 
 export function LedgerProvider({ children }: { children: ReactNode }) {
-  // Start completely empty (no seed data)
-<<<<<<< HEAD
-const initialDB = loadLocal();
+  const initialDB = loadLocal();
 
-const [customers, setCustomers] = useState<Customer[]>(initialDB.customers);
-const [loans, setLoans] = useState<Loan[]>(initialDB.loans);
-const [repayments, setRepayments] = useState<Repayment[]>(initialDB.repayments);
-=======
-  const [customers, setCustomers] = useState<Customer[]>([]);
-  const [loans, setLoans] = useState<Loan[]>([]);
-  const [repayments, setRepayments] = useState<Repayment[]>([]);
->>>>>>> c01435d352782d6d8c088dd7818717d5a49b1eeb
+  const [customers, setCustomers] = useState<Customer[]>(initialDB.customers);
+  const [loans, setLoans] = useState<Loan[]>(initialDB.loans);
+  const [repayments, setRepayments] = useState<Repayment[]>(initialDB.repayments);
 
   const [pushing, setPushing] = useState(false);
   const [pulling, setPulling] = useState(false);
@@ -275,7 +266,6 @@ const [repayments, setRepayments] = useState<Repayment[]>(initialDB.repayments);
       note: raw.note ?? undefined,
     };
 
-    // Auto close only if principal is fully paid AND no remaining interest due
     let loansNext = db.loans;
     const newPrincipalPaid = principalPaid + principalPortion;
     const remainingInterest = Math.max(0, interestDue - interestPaid - interestPortion);
@@ -327,14 +317,13 @@ const [repayments, setRepayments] = useState<Repayment[]>(initialDB.repayments);
   };
 
   // -----------------------------------------------------------------
-  // GOOGLE SHEETS SYNC (replaces previous Supabase logic)
+  // GOOGLE SHEETS SYNC
   // -----------------------------------------------------------------
 
   const pushToCloud = async () => {
     setPushing(true);
     setError(null);
     try {
-      // Full overwrite — this is the most reliable way to sync deletes + current state
       await fullSync({
         customers: db.customers,
         loans: db.loans,
@@ -420,7 +409,7 @@ const [repayments, setRepayments] = useState<Repayment[]>(initialDB.repayments);
 
     const csv = lines.join("\n");
     const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-    const url = URL.createObjectURL(blob);
+    const url = URL.createTextObjectURL(blob);
     const link = document.createElement("a");
     link.href = url;
     link.download = `loan-ledger-${todayISO()}.csv`;
