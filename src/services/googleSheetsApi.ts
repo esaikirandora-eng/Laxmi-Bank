@@ -1,4 +1,4 @@
-const SHEET_URL = "https://script.google.com/macros/s/AKfycby5TXnT_VBX4w7qrlaiJmBkhl8eopuI19xIfSZY1P_czg5Vtm1lISmCtgW8FTDz4OsETg/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzFM0voxhK7oqn_s8Y_ut3MF-UggiOqlSI9VVF7B31QSB32bdo5OwdBlfFdkZctoFms6g/exec";
 
 export async function fullSync(data: { customers: any[]; loans: any[]; repayments: any[]; }) {
   try {
@@ -8,10 +8,8 @@ export async function fullSync(data: { customers: any[]; loans: any[]; repayment
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ action: "fullSync", payload: data }),
     });
-    console.log("[GoogleSheetsApi] Push request sent");
     return { success: true };
   } catch (err) {
-    console.error("[GoogleSheetsApi] Request failed:", err);
     throw new Error("Unable to reach Google Apps Script.");
   }
 }
@@ -28,7 +26,6 @@ export async function fetchAllData() {
       repayments: result.repayments || [],
     };
   } catch (err) {
-    console.error("[GoogleSheetsApi] Pull failed:", err);
     throw new Error("Unable to pull data from Google Sheets.");
   }
 }
