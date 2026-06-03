@@ -41,6 +41,7 @@ const saveLocal = (d: DB) => {
     /* ignore quota errors */
   }
 };
+<<<<<<< HEAD
 const loadLocal = (): DB => {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
@@ -62,6 +63,9 @@ const loadLocal = (): DB => {
     };
   }
 };
+=======
+
+>>>>>>> c01435d352782d6d8c088dd7818717d5a49b1eeb
 const calcInterestDue = (
   principal: number,
   rate: number,
@@ -174,11 +178,17 @@ const Ctx = createContext<LedgerCtx | null>(null);
 
 export function LedgerProvider({ children }: { children: ReactNode }) {
   // Start completely empty (no seed data)
+<<<<<<< HEAD
 const initialDB = loadLocal();
 
 const [customers, setCustomers] = useState<Customer[]>(initialDB.customers);
 const [loans, setLoans] = useState<Loan[]>(initialDB.loans);
 const [repayments, setRepayments] = useState<Repayment[]>(initialDB.repayments);
+=======
+  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [loans, setLoans] = useState<Loan[]>([]);
+  const [repayments, setRepayments] = useState<Repayment[]>([]);
+>>>>>>> c01435d352782d6d8c088dd7818717d5a49b1eeb
 
   const [pushing, setPushing] = useState(false);
   const [pulling, setPulling] = useState(false);
