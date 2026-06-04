@@ -29,7 +29,7 @@
  * ===================================================================
  */
 
-const SPREADSHEET_ID = 'PUT_YOUR_SPREADSHEET_ID_HERE'; // ←←← CHANGE THIS
+https://script.google.com/macros/s/AKfycby-RsmLspa8QriXnnR1Iv2fKMMessJs3rMp6iwsa-UUHHAAxJa-CyLpQ829ikD4XtlNgg/exec // ←←← CHANGE THIS
 
 /**
  * Returns the spreadsheet.
