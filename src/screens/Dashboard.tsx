@@ -134,6 +134,7 @@ export function Dashboard({ onOpenCustomer, onAddCustomer, onNavigateCustomers, 
             </p>
           </div>
           <div className="flex items-center gap-2 flex-wrap">
+            {/* RECTIFIED PULL BUTTON */}
             <Button
               size="sm"
               variant="secondary"
@@ -141,16 +142,19 @@ export function Dashboard({ onOpenCustomer, onAddCustomer, onNavigateCustomers, 
               loading={pulling}
               icon={<IconDownload size={14} />}
             >
-              {pulling ? "Pulling…" : "Pull from Supabase"}
+              {pulling ? "Pulling…" : "Pull from Google Sheets"}
             </Button>
+            
+            {/* RECTIFIED PUSH BUTTON */}
             <Button
               size="sm"
               onClick={onPush}
               loading={pushing}
               icon={<IconUpload size={14} />}
             >
-              {pushing ? "Pushing…" : "Push to Supabase"}
+              {pushing ? "Pushing…" : "Push to Google Sheets"}
             </Button>
+            
             <Button size="sm" variant="primary" icon={<IconPlus size={14} />} onClick={onAddCustomer}>
               Add Customer
             </Button>
@@ -215,7 +219,7 @@ export function Dashboard({ onOpenCustomer, onAddCustomer, onNavigateCustomers, 
         />
       </div>
 
-      {/* Quick Repayments + Insights */}
+      {/* Quick Repayments */}
       {activeLoansWithStats.length > 0 && (
         <div className="rounded-2xl bg-white border border-slate-200 shadow-sm p-5">
           <div className="flex items-center justify-between mb-3">
@@ -248,7 +252,6 @@ export function Dashboard({ onOpenCustomer, onAddCustomer, onNavigateCustomers, 
                     </div>
                     <button
                       onClick={() => {
-                        // Navigate to the customer profile and open repayment modal from there
                         onOpenCustomer(customer.id);
                       }}
                       className="shrink-0 rounded-lg border border-indigo-200 bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700 hover:bg-indigo-100"
