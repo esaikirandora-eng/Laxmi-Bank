@@ -1,4 +1,4 @@
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbz7MJTCiiNfeOZiynfAWZsYgBrcHTA28IbkGBBlyh9gyo3MNPc3KLasdPRHClpuLWIgpg/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbxUmW2IJ6CcOoxn_1MX1N9Tz--iifii_uNu80UWGiVjTsAzaN66VM9kSNP2WfE6T-8rqg/exec";
 
 export async function fullSync(data: { customers: any[]; loans: any[]; repayments: any[]; }) {
   try {
